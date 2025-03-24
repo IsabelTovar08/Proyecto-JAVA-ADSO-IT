@@ -21,6 +21,14 @@ CREATE TABLE servicios (
     FOREIGN KEY (categoria_id) REFERENCES categoria(categoria_id)
 );
 
+
+CREATE TABLE sucursal (
+    sucursal_id INT AUTO_INCREMENT PRIMARY KEY,
+    sucursal_nombre VARCHAR(100) NOT NULL,
+    direccion VARCHAR(150) NOT NULL,
+    telefono VARCHAR(10) NOT NULL
+);
+
 CREATE TABLE persona (
     persona_id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(80) NOT NULL,
@@ -34,8 +42,10 @@ CREATE TABLE empleados (
     empleado_id INT AUTO_INCREMENT PRIMARY KEY,
     persona_id INT NOT NULL,
     cargo_id INT NOT NULL,
+    sucursal_id INT NOT NULL,
     FOREIGN KEY (persona_id) REFERENCES persona(persona_id),
     FOREIGN KEY (cargo_id) REFERENCES cargo(cargo_id)
+    FOREIGN KEY (sucursal_id) REFERENCES sucursal(sucursal_id)
 );
 
 CREATE TABLE clientes (
@@ -45,15 +55,18 @@ CREATE TABLE clientes (
     FOREIGN KEY (persona_id) REFERENCES persona(persona_id)
 );
 
+
 CREATE TABLE reserva (
     reserva_id INT AUTO_INCREMENT PRIMARY KEY,
     cliente_id INT NOT NULL,
     precio_sin_descuento DECIMAL(10,2) NOT NULL,
     descuento DECIMAL(10,2) NOT NULL,
-    precio_total DECIMAL(10,2) NOT NULL,
     metodo_pago_id INT NOT NULL,
+    sucursal_id INT NOT NULL,
     FOREIGN KEY (cliente_id) REFERENCES clientes(cliente_id),
-    FOREIGN KEY (metodo_pago_id) REFERENCES metodoPago(metodo_pago_id)
+    FOREIGN KEY (metodo_pago_id) REFERENCES metodoPago(metodo_pago_id),
+    FOREIGN KEY (sucursal_id) REFERENCES sucursal(sucursal_id)
+
 );
 
 CREATE TABLE detalleReserva (
@@ -71,24 +84,3 @@ CREATE TABLE detalleReserva (
     FOREIGN KEY (empleado_id) REFERENCES empleados(empleado_id)
 );
 
-CREATE TABLE factura (
-    factura_id INT AUTO_INCREMENT PRIMARY KEY,
-    reserva_id INT NOT NULL,
-    fecha_emision TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    total DECIMAL(10,2) NOT NULL,
-    metodo_pago_id INT NOT NULL,
-    FOREIGN KEY (reserva_id) REFERENCES reserva(reserva_id),
-    FOREIGN KEY (metodo_pago_id) REFERENCES metodoPago(metodo_pago_id)
-);
-
-CREATE TABLE historial_pagos (
-    historial_pago_id INT AUTO_INCREMENT PRIMARY KEY,
-    factura_id INT NOT NULL,
-    cliente_id INT NOT NULL,
-    monto_pagado DECIMAL(10,2) NOT NULL,
-    fecha_pago TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    metodo_pago_id INT NOT NULL,
-    FOREIGN KEY (factura_id) REFERENCES factura(factura_id),
-    FOREIGN KEY (cliente_id) REFERENCES clientes(cliente_id),
-    FOREIGN KEY (metodo_pago_id) REFERENCES metodoPago(metodo_pago_id)
-);
