@@ -21,6 +21,14 @@ public class category {
     @OneToMany
     @JoinColumn(name = "category", nullable = false)
     private List<service> services = new ArrayList<>();
+    
+
+
+    public category(int idCategory, String nameCategory, List<service> services) {
+        this.idCategory = idCategory;
+        this.nameCategory = nameCategory;
+        this.services = services;
+    }
 
 
     public int getIdCategory() {

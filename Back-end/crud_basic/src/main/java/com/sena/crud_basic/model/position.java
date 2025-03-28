@@ -21,6 +21,12 @@ public class position {
     @OneToMany(mappedBy = "position")
     private List<employees> employees = new ArrayList<>();
 
+    public position(int idPosition, String namePosition, List<com.sena.crud_basic.model.employees> employees) {
+        this.idPosition = idPosition;
+        this.namePosition = namePosition;
+        this.employees = employees;
+    }
+
     public int getIdPosition() {
         return idPosition;
     }

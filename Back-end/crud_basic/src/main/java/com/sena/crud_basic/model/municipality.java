@@ -25,6 +25,14 @@ public class municipality {
     @OneToMany(mappedBy = "municipality")
     private List<branch> branches = new ArrayList<>();
 
+    public municipality(int idMunicipality, String nameMunicipality, com.sena.crud_basic.model.department department,
+            List<branch> branches) {
+        this.idMunicipality = idMunicipality;
+        this.nameMunicipality = nameMunicipality;
+        this.department = department;
+        this.branches = branches;
+    }
+
     public int getIdMunicipality() {
         return idMunicipality;
     }

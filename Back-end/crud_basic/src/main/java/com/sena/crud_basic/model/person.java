@@ -45,6 +45,23 @@ public class person {
     @OneToMany(mappedBy = "person")
     private List<employees> employees = new ArrayList<>();
 
+    public person(int idPerson, String namesPerson, String lastNamePerson, String documentTypePerson,
+            String documentPerson, String phonePerson, String emailPerson, String addressPerson,
+            com.sena.crud_basic.model.municipality municipality, List<com.sena.crud_basic.model.clients> clients,
+            List<com.sena.crud_basic.model.employees> employees) {
+        this.idPerson = idPerson;
+        this.namesPerson = namesPerson;
+        this.lastNamePerson = lastNamePerson;
+        this.documentTypePerson = documentTypePerson;
+        this.documentPerson = documentPerson;
+        this.phonePerson = phonePerson;
+        this.emailPerson = emailPerson;
+        this.addressPerson = addressPerson;
+        this.municipality = municipality;
+        this.clients = clients;
+        this.employees = employees;
+    }
+
     public int getIdPerson() {
         return idPerson;
     }

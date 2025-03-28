@@ -19,6 +19,12 @@ public class clients {
     @Column(name = "registration_date_client", nullable = false)
     private Timestamp registrationDateClient;
 
+    public clients(int idClient, com.sena.crud_basic.model.person person, Timestamp registrationDateClient) {
+        this.idClient = idClient;
+        this.person = person;
+        this.registrationDateClient = registrationDateClient;
+    }
+
     public int getIdClient() {
         return idClient;
     }

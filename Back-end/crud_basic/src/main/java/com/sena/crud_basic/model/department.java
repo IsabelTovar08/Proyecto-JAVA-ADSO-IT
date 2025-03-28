@@ -21,6 +21,12 @@ public class department {
     @OneToMany(mappedBy = "department")
     private List<municipality> municipalities = new ArrayList<>();
 
+    public department(int idDepartment, String nameDepartment, List<municipality> municipalities) {
+        this.idDepartment = idDepartment;
+        this.nameDepartment = nameDepartment;
+        this.municipalities = municipalities;
+    }
+
     public int getIdDepartment() {
         return idDepartment;
     }

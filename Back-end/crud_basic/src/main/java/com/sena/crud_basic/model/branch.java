@@ -16,6 +16,12 @@ public class branch {
     @JoinColumn(name = "id_municipality", nullable = false)
     private municipality municipality;
 
+    public branch(int idBranch, String nameBranch, com.sena.crud_basic.model.municipality municipality) {
+        this.idBranch = idBranch;
+        this.nameBranch = nameBranch;
+        this.municipality = municipality;
+    }
+
     public int getIdBranch() {
         return idBranch;
     }

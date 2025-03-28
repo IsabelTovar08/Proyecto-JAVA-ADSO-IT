@@ -32,6 +32,15 @@ public class service {
     @JoinColumn(name = "id_category", nullable = false)
     private category category;
 
+    public service(int idService, String nameService, String descriptionService, BigDecimal basePriceService,
+            com.sena.crud_basic.model.category category) {
+        this.idService = idService;
+        this.nameService = nameService;
+        this.descriptionService = descriptionService;
+        this.basePriceService = basePriceService;
+        this.category = category;
+    }
+
     public int getIdService() {
         return idService;
     }

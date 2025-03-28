@@ -40,6 +40,20 @@ public class reservation_details {
     @Column(name = "estatus_service", length = 100, nullable = false)
     private ServiceStatus estatusServicio;
 
+    public reservation_details(int idReservationDetails, com.sena.crud_basic.model.reservation reservation,
+            com.sena.crud_basic.model.service service, employees idEmployee, Date reservationDate, Time reservationTime,
+            BigDecimal extraCharges, BigDecimal discount, ServiceStatus estatusServicio) {
+        this.idReservationDetails = idReservationDetails;
+        this.reservation = reservation;
+        this.service = service;
+        this.idEmployee = idEmployee;
+        this.reservationDate = reservationDate;
+        this.reservationTime = reservationTime;
+        this.extraCharges = extraCharges;
+        this.discount = discount;
+        this.estatusServicio = estatusServicio;
+    }
+
     public enum ServiceStatus {
         PENDIENTE, COMPLETADO, VENCIDO
     }

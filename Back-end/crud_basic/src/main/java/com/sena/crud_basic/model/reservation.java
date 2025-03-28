@@ -26,6 +26,15 @@ public class reservation {
     @OneToMany(mappedBy = "reservation")
     private List<reservation_details> reservationDetails = new ArrayList<>();
 
+    public reservation(int idReservation, com.sena.crud_basic.model.clients clients, payment_method paymentMethod,
+            ReservationStatus statusReservation, List<reservation_details> reservationDetails) {
+        IdReservation = idReservation;
+        this.clients = clients;
+        this.paymentMethod = paymentMethod;
+        this.statusReservation = statusReservation;
+        this.reservationDetails = reservationDetails;
+    }
+
     public enum ReservationStatus {
         PENDIENTE, PAGADA, CANCELADA
     }

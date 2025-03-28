@@ -28,6 +28,16 @@ public class employees {
     @OneToMany(mappedBy = "idEmployee")
     private List<reservation_details> reservationDetails = new ArrayList<>();
 
+    public employees(int idEmployee, com.sena.crud_basic.model.person person,
+            com.sena.crud_basic.model.position position, BigDecimal salaryEmployee,
+            List<reservation_details> reservationDetails) {
+        this.idEmployee = idEmployee;
+        this.person = person;
+        this.position = position;
+        this.salaryEmployee = salaryEmployee;
+        this.reservationDetails = reservationDetails;
+    }
+
     public int getIdEmployee() {
         return idEmployee;
     }

@@ -20,6 +20,12 @@ public class payment_method {
     @OneToMany(mappedBy = "paymentMethod")
     private List<reservation> reservations = new ArrayList<>();
 
+    public payment_method(int idPaymentMethod, String namePaymentMethod, List<reservation> reservations) {
+        this.idPaymentMethod = idPaymentMethod;
+        this.namePaymentMethod = namePaymentMethod;
+        this.reservations = reservations;
+    }
+
     public int getIdPaymentMethod() {
         return idPaymentMethod;
     }
