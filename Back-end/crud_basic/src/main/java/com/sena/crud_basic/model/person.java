@@ -1,7 +1,6 @@
 package com.sena.crud_basic.model;
 
-import jakarta.persistence.Entity;
-
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +10,7 @@ import jakarta.persistence.*;
 public class person {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_person", nullable = false)
     private int idPerson;
 
@@ -21,7 +21,7 @@ public class person {
     private String lastNamePerson;
 
     @Column(name = "document_type_person", length = 10, nullable = false)
-    private String documentTypePerson;
+    private DocumentType documentTypePerson;
 
     @Column(name = "document_person", length = 10, nullable = false)
     private String documentPerson;
@@ -39,16 +39,39 @@ public class person {
     @JoinColumn(name = "id_municipality", nullable = false)
     private municipality municipality;
 
+    @Column(name = "creation_date", nullable = false)
+    private LocalDateTime creationDate;
+
     @OneToMany(mappedBy = "person")
     private List<clients> clients = new ArrayList<>();
 
     @OneToMany(mappedBy = "person")
     private List<employees> employees = new ArrayList<>();
 
-    public person(int idPerson, String namesPerson, String lastNamePerson, String documentTypePerson,
+    public enum DocumentType {
+        CC("CC", "Cédula de Ciudadanía"), TI("TI", "Tarjeta de Identidad"), CE("CE", "Cédula de Extranjería"), PP("PP", "Pasaporte");
+
+        private final String code;
+        private final String value;
+
+        DocumentType(String code, String value ) {
+            this.code = code;
+            this.value = value;
+        }
+
+        public String getCode() {
+            return code;
+        }
+
+        public String getValue() {
+            return value;
+        }
+    }
+
+    public person(int idPerson, String namesPerson, String lastNamePerson, DocumentType documentTypePerson,
             String documentPerson, String phonePerson, String emailPerson, String addressPerson,
-            com.sena.crud_basic.model.municipality municipality, List<com.sena.crud_basic.model.clients> clients,
-            List<com.sena.crud_basic.model.employees> employees) {
+            com.sena.crud_basic.model.municipality municipality, LocalDateTime creationDate,
+            List<com.sena.crud_basic.model.clients> clients, List<com.sena.crud_basic.model.employees> employees) {
         this.idPerson = idPerson;
         this.namesPerson = namesPerson;
         this.lastNamePerson = lastNamePerson;
@@ -58,6 +81,7 @@ public class person {
         this.emailPerson = emailPerson;
         this.addressPerson = addressPerson;
         this.municipality = municipality;
+        this.creationDate = creationDate;
         this.clients = clients;
         this.employees = employees;
     }
@@ -86,11 +110,11 @@ public class person {
         this.lastNamePerson = lastNamePerson;
     }
 
-    public String getDocumentTypePerson() {
+    public DocumentType getDocumentTypePerson() {
         return documentTypePerson;
     }
 
-    public void setDocumentTypePerson(String documentTypePerson) {
+    public void setDocumentTypePerson(DocumentType documentTypePerson) {
         this.documentTypePerson = documentTypePerson;
     }
 
@@ -134,6 +158,14 @@ public class person {
         this.municipality = municipality;
     }
 
+    public LocalDateTime getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(LocalDateTime creationDate) {
+        this.creationDate = creationDate;
+    }
+
     public List<clients> getClients() {
         return clients;
     }
@@ -150,5 +182,5 @@ public class person {
         this.employees = employees;
     }
 
-    
+   
 }

@@ -1,0 +1,80 @@
+<mat-sidenav-container class="sidenav-container">
+  <!-- Sidenav a la izquierda -->
+  <mat-sidenav #sidenav mode="side" [opened]="isSidenavOpen" position="start">
+    <mat-nav-list>
+      <div class="side-toggle-button menu">
+        <button mat-icon-button (click)="sidenav.toggle()" aria-label="Toggle sidenav">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+      <br>
+      <!-- Configuración -->
+      <h3 class="sidenav-section-title">
+        <mat-icon>settings</mat-icon>Configuración
+      </h3>
+
+      <a mat-list-item routerLink="/dashboard/category">
+        <mat-icon matListIcon>category</mat-icon>Categorías y servicios
+      </a>
+      <a mat-list-item routerLink="/dashboard/person">
+        <mat-icon matListIcon>group</mat-icon>Personas
+      </a>
+      <a mat-list-item routerLink="/dashboard/position">
+        <mat-icon matListIcon>badge</mat-icon>Cargos
+      </a>
+      <a mat-list-item routerLink="/dashboard/deparment">
+        <mat-icon matListIcon>map</mat-icon>Departamentos y Municipios
+      </a>
+      <a mat-list-item routerLink="/dashboard/branch">
+        <mat-icon matListIcon>store</mat-icon>Sucursales
+      </a>
+      <a mat-list-item routerLink="/dashboard/paymentMethod">
+        <mat-icon matListIcon>credit_card</mat-icon>Métodos de pago
+      </a>
+
+      <!-- Reservas -->
+      <h3 class="sidenav-section-title">
+        <mat-icon>calendar_month</mat-icon>Calendario de Reservas
+      </h3>
+
+      <a mat-list-item routerLink="/dashboard/cabello">
+        <mat-icon matListIcon>content_cut</mat-icon>Cabello
+      </a>
+      <a mat-list-item routerLink="/dashboard/unas">
+        <mat-icon matListIcon>handshake</mat-icon>Uñas
+      </a>
+      <a mat-list-item routerLink="/dashboard/cejas">
+        <mat-icon matListIcon>face</mat-icon>Cejas
+      </a>
+      <a mat-list-item routerLink="/dashboard/pestanas">
+        <mat-icon matListIcon>visibility</mat-icon>Pestañas
+      </a>
+      <a mat-list-item routerLink="/dashboard/maquillaje">
+        <mat-icon matListIcon>brush</mat-icon>Maquillaje
+      </a>
+
+      <!-- Resumen -->
+      <h3 class="sidenav-section-title">
+        <mat-icon>calendar_month</mat-icon>Resumen
+      </h3>
+
+      <a mat-list-item routerLink="/dashboard/cabello">
+        <mat-icon matListIcon>content_cut</mat-icon>Resumen Reservas
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <!-- Botón fijo arriba a la izquierda -->
+    <div class="side-toggle-button">
+      <button mat-icon-button (click)="sidenav.toggle()" aria-label="Toggle sidenav">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="section-content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

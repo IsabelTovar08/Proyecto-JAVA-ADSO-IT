@@ -1,0 +1,31 @@
+<div class="form-container">
+    <h2 mat-dialog-title>{{ isEditMode ? 'Editar categoria' : 'Nuevo categoria' }}</h2>
+    <div>
+      Categoría: <strong>{{ categoria?.nameCategory || categoria?.nameCategory || 'Sin categoría' }}</strong>
+    </div>
+    
+  
+    <mat-dialog-content [formGroup]="categoriaForm">
+        <div class="inline-fields">
+          <mat-form-field appearance="fill" class="half-width">
+            <mat-label>Nombre del categoria</mat-label>
+            <input matInput formControlName="nameCategory" />
+          </mat-form-field>
+      
+        </div>
+      
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Descripción</mat-label>
+          <textarea matInput formControlName="descriptionCategory"></textarea>
+        </mat-form-field>
+
+      </mat-dialog-content>
+      
+    <mat-dialog-actions align="end">
+      <button mat-button (click)="cancelar()">Cancelar</button>
+      <button mat-flat-button color="primary" (click)="guardar()" [disabled]="!categoriaForm.valid">
+        {{ isEditMode ? 'Actualizar' : 'Guardar' }}
+      </button>
+    </mat-dialog-actions>
+  </div>
+  

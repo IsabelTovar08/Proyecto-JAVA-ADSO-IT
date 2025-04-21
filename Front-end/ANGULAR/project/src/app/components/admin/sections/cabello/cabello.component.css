@@ -1,0 +1,42 @@
+.calendar-container {
+    padding: 20px;
+    background-color: #e0c9d9;
+    border-radius: 12px;
+    overflow-x: auto;
+  }
+  
+  .calendar-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+  }
+  
+  .calendar-table th,
+  .calendar-table td {
+    border: 1px solid #fff;
+    padding: 10px;
+    min-width: 100px;
+  }
+  
+  .cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .reservation-chip {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    color: white;
+  }
+  
+  /* Colors */
+  .green { background-color: #4caf50; }
+  .blue { background-color: #2196f3; }
+  .yellow { background-color: #ffeb3b; color: #333; }
+  .red { background-color: #f44336; }
+  

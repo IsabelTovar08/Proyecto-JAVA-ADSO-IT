@@ -1,5 +1,6 @@
 package com.sena.crud_basic.model;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import jakarta.persistence.*;
 @Entity(name = "reservation")
 public class reservation {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_reservation", nullable = false)
     private int IdReservation;
 
@@ -23,15 +25,20 @@ public class reservation {
     @Column(name = "status_reservation", length = 100, nullable = false)
     private ReservationStatus statusReservation;
 
+    @Column(name = "creation_date", nullable = false)
+    private LocalDateTime creationDate;
+
     @OneToMany(mappedBy = "reservation")
     private List<reservation_details> reservationDetails = new ArrayList<>();
 
     public reservation(int idReservation, com.sena.crud_basic.model.clients clients, payment_method paymentMethod,
-            ReservationStatus statusReservation, List<reservation_details> reservationDetails) {
+            ReservationStatus statusReservation, LocalDateTime creationDate,
+            List<reservation_details> reservationDetails) {
         IdReservation = idReservation;
         this.clients = clients;
         this.paymentMethod = paymentMethod;
         this.statusReservation = statusReservation;
+        this.creationDate = creationDate;
         this.reservationDetails = reservationDetails;
     }
 
@@ -69,6 +76,14 @@ public class reservation {
 
     public void setStatusReservation(ReservationStatus statusReservation) {
         this.statusReservation = statusReservation;
+    }
+
+    public LocalDateTime getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(LocalDateTime creationDate) {
+        this.creationDate = creationDate;
     }
 
     public List<reservation_details> getReservationDetails() {

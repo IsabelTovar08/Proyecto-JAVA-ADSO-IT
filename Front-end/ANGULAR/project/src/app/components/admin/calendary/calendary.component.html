@@ -1,0 +1,98 @@
+<div class="calendar-container">
+    <!-- Barra de fecha y navegación -->
+    <div class="calendar-header">
+        <div class="today-info">
+            <span class="today-text">Hoy es {{ today | date: 'fullDate'
+                }}</span>
+        </div>
+
+        <div class="calendar-navigation">
+            <button mat-button class="custom-button" (click)="previousWeek()">←
+                Semana anterior</button>
+            <span class="current-week">{{ getFormattedDate(currentWeekStart,
+                'dd MMM yyyy') }}</span>
+            <button mat-button class="custom-button"
+                (click)="nextWeek()">Siguiente semana →</button>
+            <button mat-button class="custom-button" (click)="toggleView()">
+                {{ isMonthView ? 'Ver por Día' : 'Ver por Mes' }}
+            </button>
+        </div>
+    </div>
+
+    <!-- Vista de selección de fecha y calendario -->
+    <div class="calendar-grid" *ngIf="isDayView">
+        <table mat-table class="day-table">
+            <thead>
+                <tr>
+                    <th class="hour-label">Hora</th>
+                    <th *ngFor="let day of weekDays" class="day-label">{{
+                        day.label }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let hour of getHourSlots()">
+                    <td class="hour-label">{{ hour }}</td>
+                    <td class="reservation-cell" *ngFor="let day of weekDays">
+                        <ng-container
+                            *ngFor="let reservation of getReservationsByTime(day.date, hour)">
+                            <div
+                                class="reservation-item"
+                                [ngStyle]="{ 'background-color': reservation.color }"
+                                (click)="showReservationDetails(reservation)">
+                                {{ reservation.service }}
+                            </div>
+                        </ng-container>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Vista por mes con las semanas -->
+    <div class="month-view" *ngIf="!isDayView">
+        <div class="week-navigation">
+            <span class="month-label">{{ currentMonth | date: 'MMMM yyyy'
+                }}</span>
+        </div>
+
+        <!-- Semanas -->
+        <!-- Encabezado de días -->
+        <div class="month-grid week-header">
+            <div class="day-header" *ngFor="let dayName of dayNames">
+                {{ dayName }}
+            </div>
+        </div>
+
+        <!-- Días del mes organizados por semanas -->
+        <div *ngFor="let week of getWeeksInMonth()" class="month-grid week-row">
+            <div
+                class="day-cell"
+                *ngFor="let day of week"
+                [class.outside]="!day.isCurrentMonth"
+                (click)="onDayClick(day)">
+
+                <div class="day-number">{{ day.date.getDate() }}</div>
+
+                <div class="reservation-item"
+                    *ngFor="let reservation of getReservationsByDay(day)">
+                    {{ reservation.service }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para el calendario anterior -->
+    <div class="calendar-modal" *ngIf="showModal">
+        <div class="modal-content">
+            <button class="close-modal" (click)="closeModal()">×</button>
+            <mat-calendar [(selected)]="selectedDate"
+                (selectedChange)="onDateSelected($event)">
+            </mat-calendar>
+        </div>
+    </div>
+
+    <!-- Botón flotante para abrir el calendario modal -->
+    <button mat-fab class="calendar-toggle-btn" (click)="openModal()">
+        <mat-icon>calendar_today</mat-icon>
+    </button>
+</div>

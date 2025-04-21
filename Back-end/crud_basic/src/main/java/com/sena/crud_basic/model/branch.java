@@ -1,11 +1,14 @@
 package com.sena.crud_basic.model;
 
-import jakarta.persistence.Entity;
+
+import java.time.LocalDateTime;
+
 import jakarta.persistence.*;
 
 @Entity(name = "branch")
 public class branch {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_branch", nullable = false)
     private int idBranch;
 
@@ -16,7 +19,11 @@ public class branch {
     @JoinColumn(name = "id_municipality", nullable = false)
     private municipality municipality;
 
-    public branch(int idBranch, String nameBranch, com.sena.crud_basic.model.municipality municipality) {
+    public branch() {
+    }
+
+    public branch(int idBranch, String nameBranch,
+            com.sena.crud_basic.model.municipality municipality) {
         this.idBranch = idBranch;
         this.nameBranch = nameBranch;
         this.municipality = municipality;
@@ -46,5 +53,5 @@ public class branch {
         this.municipality = municipality;
     }
 
-   
+    
 }

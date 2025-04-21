@@ -1,14 +1,14 @@
 package com.sena.crud_basic.model;
 
-import jakarta.persistence.Entity;
 
-import java.security.Timestamp;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.*;
 
 @Entity(name = "clients")
 public class clients {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_client", nullable = false)
     private int idClient;
 
@@ -17,9 +17,10 @@ public class clients {
     private person person;
 
     @Column(name = "registration_date_client", nullable = false)
-    private Timestamp registrationDateClient;
+    private LocalDateTime  registrationDateClient;
 
-    public clients(int idClient, com.sena.crud_basic.model.person person, Timestamp registrationDateClient) {
+    public clients(int idClient, com.sena.crud_basic.model.person person,
+            LocalDateTime  registrationDateClient) {
         this.idClient = idClient;
         this.person = person;
         this.registrationDateClient = registrationDateClient;
@@ -41,11 +42,11 @@ public class clients {
         this.person = person;
     }
 
-    public Timestamp getRegistrationDateClient() {
+    public LocalDateTime  getRegistrationDateClient() {
         return registrationDateClient;
     }
 
-    public void setRegistrationDateClient(Timestamp registrationDateClient) {
+    public void setRegistrationDateClient(LocalDateTime  registrationDateClient) {
         this.registrationDateClient = registrationDateClient;
     }
 

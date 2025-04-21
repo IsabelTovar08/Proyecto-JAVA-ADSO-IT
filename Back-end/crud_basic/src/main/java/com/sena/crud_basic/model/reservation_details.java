@@ -3,12 +3,14 @@ package com.sena.crud_basic.model;
 import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.Time;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.*;
 
 @Entity(name = "reservation_details")
 public class reservation_details {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_reservation_details", nullable = false)
     private int idReservationDetails;
 
@@ -36,13 +38,17 @@ public class reservation_details {
     @Column(name = "discount", nullable = false, precision = 10, scale = 2)
     private BigDecimal discount;
 
+    @Column(name = "creation_date", nullable = false)
+    private LocalDateTime creationDate;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "estatus_service", length = 100, nullable = false)
     private ServiceStatus estatusServicio;
 
+    
     public reservation_details(int idReservationDetails, com.sena.crud_basic.model.reservation reservation,
             com.sena.crud_basic.model.service service, employees idEmployee, Date reservationDate, Time reservationTime,
-            BigDecimal extraCharges, BigDecimal discount, ServiceStatus estatusServicio) {
+            BigDecimal extraCharges, BigDecimal discount, LocalDateTime creationDate, ServiceStatus estatusServicio) {
         this.idReservationDetails = idReservationDetails;
         this.reservation = reservation;
         this.service = service;
@@ -51,6 +57,7 @@ public class reservation_details {
         this.reservationTime = reservationTime;
         this.extraCharges = extraCharges;
         this.discount = discount;
+        this.creationDate = creationDate;
         this.estatusServicio = estatusServicio;
     }
 
@@ -122,6 +129,14 @@ public class reservation_details {
         this.discount = discount;
     }
 
+    public LocalDateTime getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(LocalDateTime creationDate) {
+        this.creationDate = creationDate;
+    }
+
     public ServiceStatus getEstatusServicio() {
         return estatusServicio;
     }
@@ -131,7 +146,4 @@ public class reservation_details {
     }
 
     
-
-    
-
 }

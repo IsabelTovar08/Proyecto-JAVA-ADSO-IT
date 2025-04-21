@@ -5,6 +5,8 @@ import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
@@ -12,6 +14,7 @@ import jakarta.persistence.OneToMany;
 
 public class position {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_position", nullable = false)
     private int idPosition;
 
@@ -20,6 +23,9 @@ public class position {
 
     @OneToMany(mappedBy = "position")
     private List<employees> employees = new ArrayList<>();
+
+    public position() {
+    }
 
     public position(int idPosition, String namePosition, List<com.sena.crud_basic.model.employees> employees) {
         this.idPosition = idPosition;

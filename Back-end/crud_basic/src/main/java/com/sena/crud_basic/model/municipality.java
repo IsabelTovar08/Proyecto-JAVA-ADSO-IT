@@ -1,8 +1,5 @@
 package com.sena.crud_basic.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +9,7 @@ import jakarta.persistence.*;
 public class municipality {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_municipality", nullable = false)
     private int idMunicipality;
 
@@ -26,11 +24,14 @@ public class municipality {
     private List<branch> branches = new ArrayList<>();
 
     public municipality(int idMunicipality, String nameMunicipality, com.sena.crud_basic.model.department department,
-            List<branch> branches) {
+         List<branch> branches) {
         this.idMunicipality = idMunicipality;
         this.nameMunicipality = nameMunicipality;
         this.department = department;
         this.branches = branches;
+    }
+    public municipality(){
+        
     }
 
     public int getIdMunicipality() {
@@ -56,7 +57,7 @@ public class municipality {
     public void setDepartment(department department) {
         this.department = department;
     }
-
+    
     public List<branch> getBranches() {
         return branches;
     }
@@ -64,6 +65,4 @@ public class municipality {
     public void setBranches(List<branch> branches) {
         this.branches = branches;
     }
-
-   
 }

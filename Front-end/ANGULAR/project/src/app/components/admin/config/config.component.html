@@ -1,0 +1,77 @@
+<h1>Categorías 
+    <button mat-icon-button color="primary">
+        <mat-icon>add_circle</mat-icon>
+    </button>
+</h1>
+
+
+
+<div class="config-container">
+    <mat-card *ngFor="let category of categories; let i = index"
+        class="config-card">
+        <mat-card-header>
+            <mat-card-title>
+                {{ category.nameCategory }}
+                <span class="icon-container">
+                    <mat-icon [matMenuTriggerFor]="categoryMenu"
+                        class="menu-icon">more_vert</mat-icon>
+                </span>
+                <mat-menu #categoryMenu="matMenu">
+                    <button mat-menu-item
+                    (click)="abrirFormularioNuevoServicio(categoriaSeleccionada)">Editar
+                        <mat-icon>edit</mat-icon></button>
+                    <button mat-menu-item
+                        (click)="eliminarCategoria(categoriaSeleccionada)">Eliminar
+                        <mat-icon>delete</mat-icon></button>
+                </mat-menu>
+            </mat-card-title>
+            <mat-icon class="add-icon"
+                (click)="abrirFormularioNuevoServicio(categoriaSeleccionada = category, servicioSeleccionado = null)">add_circle</mat-icon>
+        </mat-card-header>
+
+        <mat-card-content>
+            <p class="category-title">Servicios:</p>
+
+            <!-- Lista de servicios por categoría -->
+            <ul class="category-list"
+                *ngIf="category.services.length > 0; else noServices">
+                <li *ngFor="let service of category.services"
+                    class="category-item">
+                    <span>{{ service.nameService }}</span>
+                    <span class="icon-container">
+                        <mat-icon
+                            [matMenuTriggerFor]="serviceMenu"
+                            class="menu-icon">
+                            more_vert
+                        </mat-icon>
+                    </span>
+                    <mat-menu #serviceMenu="matMenu">
+                        <button mat-menu-item (click)="abrirFormularioNuevoServicio(servicioSeleccionado = service)">Editar</button>
+                        <button mat-menu-item (click)="eliminarServicio(service)">Eliminar</button>
+                    </mat-menu>
+                
+                </li>
+            </ul>
+
+            <ng-template #noServices>
+                <p class="no-services-msg">No hay servicios para esta
+                    categoría.</p>
+            </ng-template>
+        </mat-card-content>
+    </mat-card>
+
+    <!-- Menú de categoría -->
+    
+
+    
+</div>
+<!-- Formulario visible solo si se abre -->
+<div class="form">
+    <app-form-service
+        *ngIf="mostrarFormularioServicio"
+        [servicio]="servicioSeleccionado"
+        [categoria]="categoriaSeleccionada"
+
+        (cerrar)="cerrarFormularioServicio($event)">
+    </app-form-service>
+</div>

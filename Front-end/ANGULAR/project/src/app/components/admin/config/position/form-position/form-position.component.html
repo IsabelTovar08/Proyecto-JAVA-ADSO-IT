@@ -1,0 +1,23 @@
+
+<div class="form-container">
+    <h2 mat-dialog-title>{{ isEditMode ? 'Editar Cargo' : 'Nuevo Cargo' }}</h2>
+
+    <mat-dialog-content [formGroup]="cargoForm">
+        <div class="inline-fields">
+          <mat-form-field appearance="fill" class="half-width">
+            <mat-label>Nombre del Cargo</mat-label>
+            <input matInput formControlName="namePosition" />
+          </mat-form-field>
+      
+          
+        </div>
+      </mat-dialog-content>
+      
+    <mat-dialog-actions align="end">
+      <button mat-button >Cancelar</button>
+      <button mat-flat-button color="primary" (click)="guardarCargo()" [disabled]="!cargoForm.valid">
+       {{ isEditMode ? 'Actualizar' : 'Guardar' }}
+      </button>
+    </mat-dialog-actions>
+  </div>
+  

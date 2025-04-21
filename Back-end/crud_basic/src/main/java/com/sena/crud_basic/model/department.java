@@ -5,6 +5,8 @@ import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
@@ -12,6 +14,7 @@ import jakarta.persistence.OneToMany;
 public class department {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_department", nullable = false)
     private int idDepartment;
 
@@ -21,12 +24,13 @@ public class department {
     @OneToMany(mappedBy = "department")
     private List<municipality> municipalities = new ArrayList<>();
 
-    public department(int idDepartment, String nameDepartment, List<municipality> municipalities) {
+    public department(int idDepartment, String nameDepartment, 
+            List<municipality> municipalities) {
         this.idDepartment = idDepartment;
         this.nameDepartment = nameDepartment;
         this.municipalities = municipalities;
     }
-
+public department(){}
     public int getIdDepartment() {
         return idDepartment;
     }

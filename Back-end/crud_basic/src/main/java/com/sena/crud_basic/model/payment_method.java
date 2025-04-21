@@ -1,7 +1,5 @@
 package com.sena.crud_basic.model;
 
-import jakarta.persistence.Entity;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +9,7 @@ import jakarta.persistence.*;
 public class payment_method {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_payment_method", nullable = false)
     private int idPaymentMethod;
 
@@ -20,7 +19,8 @@ public class payment_method {
     @OneToMany(mappedBy = "paymentMethod")
     private List<reservation> reservations = new ArrayList<>();
 
-    public payment_method(int idPaymentMethod, String namePaymentMethod, List<reservation> reservations) {
+    public payment_method(int idPaymentMethod, String namePaymentMethod,
+            List<reservation> reservations) {
         this.idPaymentMethod = idPaymentMethod;
         this.namePaymentMethod = namePaymentMethod;
         this.reservations = reservations;

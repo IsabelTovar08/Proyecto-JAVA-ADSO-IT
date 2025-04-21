@@ -1,6 +1,9 @@
 package com.sena.crud_basic.model;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.*;
 
@@ -16,6 +19,7 @@ public class service {
      * length = 10 es la longitud de la columna
      * nullable = fSi acepta nulo o no
      */
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_service", nullable = false)
     private int idService;
 
@@ -30,6 +34,9 @@ public class service {
 
     @ManyToOne
     @JoinColumn(name = "id_category", nullable = false)
+    // @JsonBackReference
+    // @JsonManagedReference
+    @JsonIgnoreProperties("services")
     private category category;
 
     public service(int idService, String nameService, String descriptionService, BigDecimal basePriceService,
@@ -39,6 +46,9 @@ public class service {
         this.descriptionService = descriptionService;
         this.basePriceService = basePriceService;
         this.category = category;
+    }
+
+    public service() {
     }
 
     public int getIdService() {
@@ -80,8 +90,6 @@ public class service {
     public void setCategory(category category) {
         this.category = category;
     }
-
-    
 
     
 }

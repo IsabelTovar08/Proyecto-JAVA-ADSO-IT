@@ -1,0 +1,59 @@
+mat-toolbar{
+    background-color: #ffffff;
+    box-shadow: inset 0 0 20px #e9d4f1;
+    border: solid 1px #f7e3ff;
+    border-radius: 1vh;
+}
+.custom-toolbar {
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    background: linear-gradient(to right,#b18cfe, #cea3ff);
+    color:#ffffff;
+    text-shadow: 0 0 1px #000;
+
+    height: 64px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .app-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+  
+  .toolbar-icon {
+    color: white;
+    transition: transform 0.2s ease, background-color 0.3s;
+    border-radius: 50%;
+    padding: 6px;
+  }
+  
+  .toolbar-icon:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+  }
+  
+  .user-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: white;
+    text-transform: none;
+  }
+  
+  .user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+  }
+  
+  .user-name {
+    font-weight: 500;
+  }
+  
+  

@@ -1,0 +1,33 @@
+<mat-toolbar color="primary" class="custom-toolbar">
+    <span class="app-title">BeautyDash 💅</span>
+  
+    <span class="example-spacer"></span>
+    <input type="text" [(ngModel)]="query" placeholder="Buscar..." />
+
+    <!-- <button (click)="buscar()">Buscar</button> -->
+    
+    <ul>
+      <li *ngFor="let item of resultados">
+        {{ item.nameService || item.nameCategory || item.username }}
+      </li>
+    </ul>
+  
+    <!-- Usuario con menú -->
+    <button mat-button [matMenuTriggerFor]="userMenu" class="user-button">
+      <img class="user-avatar" src="https://i.pravatar.cc/40" alt="User Avatar" />
+      <span class="user-name">Hola, Carla</span>
+    </button>
+  
+    <!-- Menú desplegable del usuario -->
+    <mat-menu #userMenu="matMenu">
+      <button mat-menu-item>
+        <mat-icon>person</mat-icon>
+        <span>Perfil</span>
+      </button>
+      <button mat-menu-item >
+        <mat-icon>logout</mat-icon>
+        <span>Cerrar sesión</span>
+      </button>
+    </mat-menu>
+  </mat-toolbar>
+  

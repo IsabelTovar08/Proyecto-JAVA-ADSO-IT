@@ -1,0 +1,191 @@
+/* Estilos principales */
+.calendar-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: #efefff; /* Blanco frío */
+    box-sizing: border-box;
+}
+
+/* Barra de fecha y navegación */
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.today-info {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333; /* Negro */
+    margin-right: 10px;
+}
+
+.today-text {
+    font-size: 0.9rem;
+    color: #333; /* Negro */
+}
+
+.calendar-navigation {
+    display: flex;
+    align-items: center;
+}
+
+.calendar-navigation button {
+    margin: 0 4px;
+}
+
+.calendar-navigation span {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin: 0 10px;
+    color: #765dfb; /* Azul intermedio */
+}
+
+/* Estilo para botones */
+.custom-button {
+    background-color: #765dfb; /* Azul intermedio */
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    font-weight: 500;
+    border-radius: 8px;
+    text-transform: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.3s ease;
+}
+
+.custom-button:hover {
+    background-color: #5945f9; /* Azul intenso */
+    cursor: pointer;
+}
+
+/* Estilos para el modal del calendario */
+.calendar-modal {
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    width: 20%;
+    height: auto;
+    box-shadow: 0 0 50px #000; /* Negro */
+    border-radius: 2vh;
+}
+
+.modal-content {
+    background-color: #fff; /* Blanco */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Negro */
+    position: relative;
+    max-width: 400px; /* Ajuste del tamaño máximo del modal */
+    width: 100%;
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #765dfb; /* Azul intermedio */
+    cursor: pointer;
+}
+
+.close-modal:hover {
+    color: #5945f9; /* Azul intenso */
+}
+
+/* Botón flotante para abrir el modal */
+.calendar-toggle-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #765dfb; /* Azul intermedio */
+    color: white;
+    padding: 12px;
+    border-radius: 50%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Negro */
+    z-index: 10000;
+    transition: background-color 0.3s ease;
+}
+
+.calendar-toggle-btn:hover {
+    background-color: #5945f9; /* Azul intenso */
+    cursor: pointer;
+}
+
+/* Estilo para la tabla de reservas */
+.day-table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.day-table th, .day-table td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.hour-label {
+    font-weight: bold;
+    background-color: #f4f4f9; /* Gris suave */
+}
+
+.day-label {
+    font-weight: bold;
+    background-color: #e0e0e0; /* Gris claro */
+}
+
+.reservation-cell {
+    height: 60px;
+    position: relative;
+    background-color: #ffffff; /* Blanco */
+}
+
+.reservation-item {
+    border-radius: 8px;
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    color: #000000; /* Negro */
+    background-color: #cea3ff; /* Lavanda suave */
+    cursor: pointer;
+    margin: 5px auto;
+    transition: all 0.3s ease;
+}
+
+.reservation-item:hover {
+    background-color: #ff9800; /* Naranja */
+}
+
+/* Estilos para la vista de Mes */
+.month-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+}
+
+.week-row {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+}
+
+.day-cell {
+    min-height: 100px;
+    border: 1px solid #ccc;
+    padding: 0.5rem;
+}
+
+.day-cell.outside {
+    background-color: #f9f9f9;
+    color: #aaa;
+}

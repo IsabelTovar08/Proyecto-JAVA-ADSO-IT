@@ -1,0 +1,21 @@
+<div class="start-wrapper">
+    <div class="center-icon" [@iconExpand]="iconState">
+      💇‍♀️
+    </div>
+  
+    <div class="icon-burst" *ngIf="showExtras">
+      <span class="icon icon-1">💅</span>
+      <span class="icon icon-2">✂️</span>
+      <span class="icon icon-3">💄</span>
+      <span class="icon icon-4">🧴</span>
+      <span class="icon icon-5">🪞</span>
+    </div>
+  
+    <div class="welcome-message" *ngIf="showExtras" @fadeIn>
+      <h2>Bienvenida al salón de belleza</h2>
+      <p>¿Cómo deseas continuar?</p>
+      <button (click)="selectRole('admin')">Administrador</button>
+      <button (click)="selectRole('user')">Usuario</button>
+    </div>
+  </div>
+  
