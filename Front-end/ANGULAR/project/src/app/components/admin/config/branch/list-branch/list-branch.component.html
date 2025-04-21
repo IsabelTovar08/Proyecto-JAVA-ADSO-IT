@@ -2,36 +2,36 @@
 <h3>Filtros</h3>
   <div class="filtros-container">
     <mat-form-field appearance="outline">
-      <mat-label>Nombre del cargo</mat-label>
-      <input matInput [(ngModel)]="nombresucursal" placeholder="Ej. Corte de cabello" />
+      <mat-label>Nombre de la Sucursal</mat-label>
+      <input matInput [(ngModel)]="nombresucursal" placeholder="Ej. Sucursal Neiva" />
     </mat-form-field>
     <button mat-raised-button color="primary" (click)="aplicarFiltros()">Buscar</button>
   </div>
 
 <mat-card>
     <mat-card-header>
-      <mat-card-title>Personas</mat-card-title>
-      <button mat-raised-button color="primary" (click)="openForm()">Agregar Persona</button>
+      <mat-card-title>Sucursales</mat-card-title>
+      <button mat-raised-button color="primary" (click)="openForm()">Agregar Sucursal</button>
     </mat-card-header>
   
     <mat-table [dataSource]="(filteredsucursales.length ? filteredsucursales : sucursales)" class="mat-elevation-z8">
       <ng-container matColumnDef="idBranch">
         <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
-        <mat-cell *matCellDef="let cargo">{{cargo.idBranch}}</mat-cell>
+        <mat-cell *matCellDef="let sucursal">{{sucursal.idBranch}}</mat-cell>
       </ng-container>
   
       <ng-container matColumnDef="nameBranch">
         <mat-header-cell *matHeaderCellDef>Nombre</mat-header-cell>
-        <mat-cell *matCellDef="let cargo">{{cargo.nameBranch}}</mat-cell>
+        <mat-cell *matCellDef="let sucursal">{{sucursal.nameBranch}}</mat-cell>
       </ng-container>
   
       <ng-container matColumnDef="actions">
         <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
-        <mat-cell *matCellDef="let cargo">
-          <button mat-icon-button (click)="editCargo(sucursalSeleccionada = cargo)">
+        <mat-cell *matCellDef="let sucursal">
+          <button mat-icon-button (click)="editsucursales(sucursalSeleccionada = sucursal)">
             <mat-icon>edit</mat-icon>
           </button>
-          <button mat-icon-button (click)="deleteCargo(cargo)">
+          <button mat-icon-button (click)="deletesucursales(sucursal)">
             <mat-icon>delete</mat-icon>
           </button>
         </mat-cell>

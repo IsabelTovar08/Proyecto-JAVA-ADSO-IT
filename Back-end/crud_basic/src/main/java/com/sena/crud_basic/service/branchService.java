@@ -24,7 +24,7 @@ public class branchService {
                     .map(this::convertBranchToDto)
                     .collect(Collectors.toList());
         } catch (Exception e) {
-            throw new RuntimeException("Error al obtener las posiciones: " + e.getMessage(), e);
+            throw new RuntimeException("Error al obtener las suscursales: " + e.getMessage(), e);
         }
     }
 

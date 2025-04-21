@@ -9,7 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import Swal from 'sweetalert2';
 import { ApiService } from '../../../../../services/api.service';
-import { FormPositionComponent } from '../../position/form-position/form-position.component';
+import { FormBranchComponent } from '../form-branch/form-branch.component';
 
 @Component({
   selector: 'app-list-branch',
@@ -38,7 +38,7 @@ cargarsucursales(){
   })
 }
   openForm(): void {
-    const dialogRef = this.dialog.open(FormPositionComponent, {
+    const dialogRef = this.dialog.open(FormBranchComponent, {
       width: '400px',
       data: this.sucursalSeleccionada
     });
@@ -51,9 +51,9 @@ cargarsucursales(){
     });
   }
 
-  editCargo(cargo: any): void {
-    // Abre el formulario con los datos del cargo
-    const dialogRef = this.dialog.open(FormPositionComponent, {
+  editsucursales(sucursales: any): void {
+    // Abre el formulario con los datos del sucursales
+    const dialogRef = this.dialog.open(FormBranchComponent, {
       width: '400px',
       data: this.sucursalSeleccionada
     });
@@ -65,10 +65,10 @@ cargarsucursales(){
     });
   }
 
-  deleteCargo(cargo: any): void {
+  deletesucursales(sucursales: any): void {
     Swal.fire({
       title: '¿Estás seguro?',
-      text: `¿Quieres eliminar el cargo: ${cargo.nameBranch}?`,
+      text: `¿Quieres eliminar el sucursales: ${sucursales.nameBranch}?`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#765dfb',
@@ -77,7 +77,7 @@ cargarsucursales(){
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-       this.apiService.delete('positions', cargo.idBranch).subscribe(() => {
+       this.apiService.delete('branchs', sucursales.idBranch).subscribe(() => {
         this.cargarsucursales();
        })
       }
@@ -88,14 +88,14 @@ cargarsucursales(){
       nameBranch: this.nombresucursal || null
     };
 
-    this.apiService.filter('positions', filtros).subscribe(result => {
+    this.apiService.filter('branchs', filtros).subscribe(result => {
       const agrupados: any = {};
-      result.forEach((cargo: any) => {
-        const catId = cargo.idBranch;
+      result.forEach((sucursales: any) => {
+        const catId = sucursales.idBranch;
         if (!agrupados[catId]) {
           agrupados[catId] = {
             idBranch: catId,
-            nameBranch: cargo.nameBranch
+            nameBranch: sucursales.nameBranch
           };
         }
       });

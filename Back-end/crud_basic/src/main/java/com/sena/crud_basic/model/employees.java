@@ -31,6 +31,9 @@ public class employees {
     @OneToMany(mappedBy = "idEmployee")
     private List<reservation_details> reservationDetails = new ArrayList<>();
 
+    public employees() {
+    }
+
     public employees(int idEmployee, com.sena.crud_basic.model.person person,
             com.sena.crud_basic.model.position position, BigDecimal salaryEmployee,
             LocalDateTime creationDate, List<reservation_details> reservationDetails) {

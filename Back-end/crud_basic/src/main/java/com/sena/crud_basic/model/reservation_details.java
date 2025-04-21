@@ -32,38 +32,29 @@ public class reservation_details {
     @Column(name = "reservation_time", nullable = false)
     private Time reservationTime;
 
-    @Column(name = "extra_charges", nullable = false, precision = 10, scale = 2)
-    private BigDecimal extraCharges;
-
     @Column(name = "discount", nullable = false, precision = 10, scale = 2)
     private BigDecimal discount;
 
     @Column(name = "creation_date", nullable = false)
     private LocalDateTime creationDate;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "estatus_service", length = 100, nullable = false)
-    private ServiceStatus estatusServicio;
-
     
+    public reservation_details() {
+    }
+
+
     public reservation_details(int idReservationDetails, com.sena.crud_basic.model.reservation reservation,
             com.sena.crud_basic.model.service service, employees idEmployee, Date reservationDate, Time reservationTime,
-            BigDecimal extraCharges, BigDecimal discount, LocalDateTime creationDate, ServiceStatus estatusServicio) {
+         BigDecimal discount, LocalDateTime creationDate) {
         this.idReservationDetails = idReservationDetails;
         this.reservation = reservation;
         this.service = service;
         this.idEmployee = idEmployee;
         this.reservationDate = reservationDate;
         this.reservationTime = reservationTime;
-        this.extraCharges = extraCharges;
         this.discount = discount;
         this.creationDate = creationDate;
-        this.estatusServicio = estatusServicio;
     }
 
-    public enum ServiceStatus {
-        PENDIENTE, COMPLETADO, VENCIDO
-    }
 
     public int getIdReservationDetails() {
         return idReservationDetails;
@@ -113,14 +104,6 @@ public class reservation_details {
         this.reservationTime = reservationTime;
     }
 
-    public BigDecimal getExtraCharges() {
-        return extraCharges;
-    }
-
-    public void setExtraCharges(BigDecimal extraCharges) {
-        this.extraCharges = extraCharges;
-    }
-
     public BigDecimal getDiscount() {
         return discount;
     }
@@ -137,13 +120,4 @@ public class reservation_details {
         this.creationDate = creationDate;
     }
 
-    public ServiceStatus getEstatusServicio() {
-        return estatusServicio;
-    }
-
-    public void setEstatusServicio(ServiceStatus estatusServicio) {
-        this.estatusServicio = estatusServicio;
-    }
-
-    
 }
