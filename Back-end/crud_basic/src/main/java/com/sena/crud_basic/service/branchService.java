@@ -33,14 +33,14 @@ public class branchService {
             return branchRepository.findById(id)
                     .map(this::convertBranchToDto);
         } catch (Exception e) {
-            throw new RuntimeException("Error al obtener la sucursal por ID: " + e.getMessage(), e);
+            throw new RuntimeException("Error al obtener el Empleado por ID: " + e.getMessage(), e);
         }
     }
 
     public ListBranchDTO saveBranch(ListBranchDTO BranchDTO) {
         try {
             if (BranchDTO == null) {
-                throw new IllegalArgumentException("La Sucursal no puede ser null.");
+                throw new IllegalArgumentException("eL Empleado no puede ser null.");
             }
             var newBranch = convertDtoToBranch(BranchDTO);
             branchRepository.save(newBranch);
@@ -49,14 +49,14 @@ public class branchService {
         } catch (IllegalArgumentException e) {
             throw e;
         } catch (Exception e) {
-            throw new RuntimeException("Error al guardar la sucursal: " + e.getMessage(), e);
+            throw new RuntimeException("Error al guardar el Empleado: " + e.getMessage(), e);
         }
     }
 
     public ListBranchDTO updateBranch(int id, ListBranchDTO BranchDTO) {
         try {
             if (BranchDTO == null) {
-                throw new IllegalArgumentException("La sucursal no puede ser null.");
+                throw new IllegalArgumentException("eL Empleado no puede ser null.");
             }
 
             var optionalBranch = getBranchById(id);
@@ -67,12 +67,12 @@ public class branchService {
                 branchRepository.save(newBranch);
                 return convertBranchToDto(newBranch);
             } else {
-                throw new RuntimeException("Sucursal con ID " + id + " no encontrada.");
+                throw new RuntimeException("Empleado con ID " + id + " no encontrada.");
             }
         } catch (IllegalArgumentException e) {
             throw e;
         } catch (Exception e) {
-            throw new RuntimeException("Error al actualizar la Sucursal: " + e.getMessage(), e);
+            throw new RuntimeException("Error al actualizar el Empleado: " + e.getMessage(), e);
         }
     }
 
@@ -82,10 +82,10 @@ public class branchService {
             if (optionalBranch.isPresent()) {
                 branchRepository.deleteById(id);
             } else {
-                throw new RuntimeException("Sucursal con ID " + id + " no encontrada para eliminar.");
+                throw new RuntimeException("Empleado con ID " + id + " no encontrada para eliminar.");
             }
         } catch (Exception e) {
-            throw new RuntimeException("Error al eliminar la Sucursal: " + e.getMessage(), e);
+            throw new RuntimeException("Error al eliminar el Empleado: " + e.getMessage(), e);
         }
     }
 
