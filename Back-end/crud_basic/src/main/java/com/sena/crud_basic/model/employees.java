@@ -42,6 +42,9 @@ public class employees {
         this.reservationDetails = reservationDetails;
     }
 
+    public employees() {
+    }
+
     public int getIdEmployee() {
         return idEmployee;
     }

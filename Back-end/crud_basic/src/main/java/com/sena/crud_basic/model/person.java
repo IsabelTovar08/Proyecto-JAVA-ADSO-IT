@@ -20,13 +20,11 @@ public class person {
     @Column(name = "last_name_person", length = 100, nullable = false)
     private String lastNamePerson;
 
-    @Column(name = "document_type_person", length = 10, nullable = false)
-    private DocumentType documentTypePerson;
 
-    @Column(name = "document_person", length = 10, nullable = false)
+    @Column(name = "document_person", length = 100, nullable = false)
     private String documentPerson;
 
-    @Column(name = "phone_person", length = 10, nullable = false)
+    @Column(name = "phone_person", length = 100, nullable = false)
     private String phonePerson;
 
     @Column(name = "email_person", length = 100, nullable = false)
@@ -48,34 +46,15 @@ public class person {
     @OneToMany(mappedBy = "person")
     private List<employees> employees = new ArrayList<>();
 
-    public enum DocumentType {
-        CC("CC", "Cédula de Ciudadanía"), TI("TI", "Tarjeta de Identidad"), CE("CE", "Cédula de Extranjería"), PP("PP", "Pasaporte");
 
-        private final String code;
-        private final String value;
 
-        DocumentType(String code, String value ) {
-            this.code = code;
-            this.value = value;
-        }
-
-        public String getCode() {
-            return code;
-        }
-
-        public String getValue() {
-            return value;
-        }
-    }
-
-    public person(int idPerson, String namesPerson, String lastNamePerson, DocumentType documentTypePerson,
+    public person(int idPerson, String namesPerson, String lastNamePerson,
             String documentPerson, String phonePerson, String emailPerson, String addressPerson,
             com.sena.crud_basic.model.municipality municipality, LocalDateTime creationDate,
             List<com.sena.crud_basic.model.clients> clients, List<com.sena.crud_basic.model.employees> employees) {
         this.idPerson = idPerson;
         this.namesPerson = namesPerson;
         this.lastNamePerson = lastNamePerson;
-        this.documentTypePerson = documentTypePerson;
         this.documentPerson = documentPerson;
         this.phonePerson = phonePerson;
         this.emailPerson = emailPerson;
@@ -84,6 +63,9 @@ public class person {
         this.creationDate = creationDate;
         this.clients = clients;
         this.employees = employees;
+    }
+
+    public person() {
     }
 
     public int getIdPerson() {
@@ -110,13 +92,7 @@ public class person {
         this.lastNamePerson = lastNamePerson;
     }
 
-    public DocumentType getDocumentTypePerson() {
-        return documentTypePerson;
-    }
-
-    public void setDocumentTypePerson(DocumentType documentTypePerson) {
-        this.documentTypePerson = documentTypePerson;
-    }
+   
 
     public String getDocumentPerson() {
         return documentPerson;

@@ -26,6 +26,9 @@ public class clients {
         this.registrationDateClient = registrationDateClient;
     }
 
+    public clients() {
+    }
+
     public int getIdClient() {
         return idClient;
     }
