@@ -9,16 +9,20 @@ public class ListReservationDetails {
     private int idReservationDetails;
     private int idReservation;
     private int idService;
+    private String nameService;
+
     private int idEmployee;
     private Date reservationDate;
     private Time reservationTime;
     private BigDecimal discount;
     private LocalDateTime creationDate;
-    public ListReservationDetails(int idReservationDetails, int idReservation, int idService, int idEmployee,
-            Date reservationDate, Time reservationTime, BigDecimal discount, LocalDateTime creationDate) {
+    public ListReservationDetails(int idReservationDetails, int idReservation, int idService, String nameService,
+            int idEmployee, Date reservationDate, Time reservationTime, BigDecimal discount,
+            LocalDateTime creationDate) {
         this.idReservationDetails = idReservationDetails;
         this.idReservation = idReservation;
         this.idService = idService;
+        this.nameService = nameService;
         this.idEmployee = idEmployee;
         this.reservationDate = reservationDate;
         this.reservationTime = reservationTime;
@@ -42,6 +46,12 @@ public class ListReservationDetails {
     }
     public void setIdService(int idService) {
         this.idService = idService;
+    }
+    public String getNameService() {
+        return nameService;
+    }
+    public void setNameService(String nameService) {
+        this.nameService = nameService;
     }
     public int getIdEmployee() {
         return idEmployee;
@@ -73,6 +83,7 @@ public class ListReservationDetails {
     public void setCreationDate(LocalDateTime creationDate) {
         this.creationDate = creationDate;
     }
+   
 
 
 }

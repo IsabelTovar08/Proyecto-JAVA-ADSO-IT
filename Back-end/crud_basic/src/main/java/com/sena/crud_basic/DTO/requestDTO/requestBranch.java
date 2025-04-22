@@ -1,15 +1,13 @@
-package com.sena.crud_basic.DTO;
+package com.sena.crud_basic.DTO.requestDTO;
 
-public class ListBranchDTO {
+public class requestBranch {
     private int idBranch;
     private String nameBranch;
     private int idMunicipality;
-    private String nameMunicipality;
-    public ListBranchDTO(int idBranch, String nameBranch, int idMunicipality, String nameMunicipality) {
+    public requestBranch(int idBranch, String nameBranch, int idMunicipality) {
         this.idBranch = idBranch;
         this.nameBranch = nameBranch;
         this.idMunicipality = idMunicipality;
-        this.nameMunicipality = nameMunicipality;
     }
     public int getIdBranch() {
         return idBranch;
@@ -29,12 +27,4 @@ public class ListBranchDTO {
     public void setIdMunicipality(int idMunicipality) {
         this.idMunicipality = idMunicipality;
     }
-    public String getNameMunicipality() {
-        return nameMunicipality;
-    }
-    public void setNameMunicipality(String nameMunicipality) {
-        this.nameMunicipality = nameMunicipality;
-    }
-    
-   
 }

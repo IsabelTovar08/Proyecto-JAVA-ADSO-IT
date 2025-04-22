@@ -1,0 +1,20 @@
+<form [formGroup]="metodoPagoForm">
+    <mat-dialog-content>
+      <div class="inline-fields">
+        <mat-form-field appearance="fill" class="half-width">
+          <mat-label>Nombre del método de pago</mat-label>
+          <input matInput formControlName="namePaymentMethod" />
+        </mat-form-field>
+      </div>
+  
+      
+    </mat-dialog-content>
+  
+    <mat-dialog-actions align="end">
+      <button mat-button>Cancelar</button>
+      <button mat-flat-button color="primary" (click)="guardarmetodoPago()" [disabled]="!metodoPagoForm.valid">
+        {{ isEditMode ? 'Actualizar' : 'Guardar' }}
+      </button>
+    </mat-dialog-actions>
+  </form>
+  

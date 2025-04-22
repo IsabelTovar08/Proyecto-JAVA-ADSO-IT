@@ -1,0 +1,35 @@
+<form [formGroup]="empleadoForm">
+    <mat-dialog-content>
+      <div class="inline-fields">
+        <mat-form-field appearance="fill" class="half-width">
+          <mat-label>Salario</mat-label>
+          <input type="number" matInput formControlName="salaryEmployee" />
+        </mat-form-field>
+      </div>
+    </mat-dialog-content>
+
+    <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Persona</mat-label>
+        <mat-select formControlName="id_person">
+          <mat-option *ngFor="let persona of personas" [value]="persona.idPerson">
+            {{ persona.namesPerson }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Cargo</mat-label>
+        <mat-select formControlName="id_position">
+          <mat-option *ngFor="let cargo of cargos" [value]="cargo.idPosition">
+            {{ cargo.namePosition }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+    <mat-dialog-actions align="end">
+      <button mat-button>Cancelar</button>
+      <button mat-flat-button color="primary" (click)="guardarempleado()" [disabled]="!empleadoForm.valid">
+        {{ isEditMode ? 'Actualizar' : 'Guardar' }}
+      </button>
+    </mat-dialog-actions>
+  </form>

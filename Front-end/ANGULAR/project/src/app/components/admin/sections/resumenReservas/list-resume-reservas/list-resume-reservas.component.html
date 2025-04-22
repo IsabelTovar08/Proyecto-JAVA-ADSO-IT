@@ -1,0 +1,33 @@
+<h1>Reservas
+    <button mat-icon-button color="primary" (click)="abrirFormularioReserva()">
+      <mat-icon>add_circle</mat-icon>
+    </button>
+  </h1>
+  
+  <mat-card *ngFor="let reserva of reservas" class="config-card">
+    <mat-card-header>
+      <mat-card-title>
+        {{ reserva.idReservation }}
+        <span class="icon-container">
+          <mat-icon [matMenuTriggerFor]="menu">more_vert</mat-icon>
+        </span>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="abrirFormularioReserva(reserva)">Editar</button>
+          <button mat-menu-item (click)="eliminarReserva(reserva)">Eliminar</button>
+        </mat-menu>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <p class="category-title">Detalles:</p>
+        <ul class="category-list">
+          <li *ngFor="let detalle of detalles" class="category-item">
+            <span>ID: {{ detalle.idReservationDetails }}</span>
+            <span> -  ID Servicio: {{ detalle.idService }}</span>
+            <span> - Fecha Reservación: {{ detalle.reservationDate }}</span>
+            <span> - Hora Reservación: {{ detalle.reservationTime }}</span>
+
+          </li>
+        </ul>
+      </mat-card-content>
+      
+  </mat-card>

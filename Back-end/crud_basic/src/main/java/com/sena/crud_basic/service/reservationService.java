@@ -105,7 +105,7 @@ public class reservationService {
 
     public ListReservationDTO convertReservationToDTO(reservation reservation) {
         return new ListReservationDTO(
-                0,
+                reservation.getIdReservation(),
                 reservation.getClients().getIdClient(),
                 reservation.getPaymentMethod().getIdPaymentMethod(),
                 LocalDateTime.now());
@@ -115,7 +115,7 @@ public class reservationService {
         clients cliente = new clients(reservationDto.getIdClient(), null, null);
         payment_method metodo_pago = new payment_method(reservationDto.getIdPaymentMethod(), null, null);
         return new reservation(
-                reservationDto.getIdReservation(),
+                0,
                 cliente,
                 metodo_pago,
                 reservationDto.getCreationDate(),

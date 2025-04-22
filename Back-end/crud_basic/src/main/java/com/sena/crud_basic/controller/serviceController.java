@@ -31,6 +31,7 @@ public class serviceController {
     @Autowired
     private serviceServices serviceService;
 
+    @GetMapping("/getAll")
     public ResponseEntity<List<ListServiceDTO>> getAllServices() {
         List<ListServiceDTO> services = serviceService.getAllServices();
         return ResponseEntity.ok(services);

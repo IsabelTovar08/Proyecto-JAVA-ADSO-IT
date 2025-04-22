@@ -1,41 +1,42 @@
+<p>list-payment-method works!</p>
 <h3>Filtros</h3>
   <div class="filtros-container">
     <mat-form-field appearance="outline">
-      <mat-label>Nombre de la Sucursal</mat-label>
-      <input matInput [(ngModel)]="nombresucursal" placeholder="Ej. Sucursal Neiva" />
+      <mat-label>Nombre del método de pago</mat-label>
+      <input matInput [(ngModel)]="nombreMetodoPago" placeholder="Ej. Nequi" />
     </mat-form-field>
     <button mat-raised-button color="primary" (click)="aplicarFiltros()">Buscar</button>
   </div>
 
 <mat-card>
     <mat-card-header>
-      <mat-card-title>Sucursales</mat-card-title>
-      <button mat-raised-button color="primary" (click)="openFormCreate()">Agregar Sucursal</button>
+      <mat-card-title>Métodos de Pago</mat-card-title>
+      <button mat-raised-button color="primary" (click)="openFormCreate()">Agregar metodoPago</button>
     </mat-card-header>
   
-    <mat-table [dataSource]="(filteredsucursales.length ? filteredsucursales : sucursales)" class="mat-elevation-z8">
-      <ng-container matColumnDef="idBranch">
+    <mat-table [dataSource]="(filteredmetodosPago.length ? filteredmetodosPago : metodosPago)" class="mat-elevation-z8">
+      <ng-container matColumnDef="idPaymentMethod">
         <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
-        <mat-cell *matCellDef="let sucursal">{{sucursal.idBranch}}</mat-cell>
+        <mat-cell *matCellDef="let metodoPago">{{metodoPago.idPaymentMethod}}</mat-cell>
       </ng-container>
   
-      <ng-container matColumnDef="nameBranch">
+      <ng-container matColumnDef="namePaymentMethod">
         <mat-header-cell *matHeaderCellDef>Nombre</mat-header-cell>
-        <mat-cell *matCellDef="let sucursal">{{sucursal.nameBranch}}</mat-cell>
+        <mat-cell *matCellDef="let metodoPago">{{metodoPago.namePaymentMethod}}</mat-cell>
       </ng-container>
   
       <ng-container matColumnDef="nameMunicipality">
         <mat-header-cell *matHeaderCellDef>Municipio</mat-header-cell>
-        <mat-cell *matCellDef="let sucursal">{{sucursal.nameMunicipality}}</mat-cell>
+        <mat-cell *matCellDef="let metodoPago">{{metodoPago.nameMunicipality}}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="actions">
         <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
-        <mat-cell *matCellDef="let sucursal">
-          <button mat-icon-button (click)="editsucursales(sucursalSeleccionada = sucursal)">
+        <mat-cell *matCellDef="let metodoPago">
+          <button mat-icon-button (click)="editmetodosPago(metodoPagoSeleccionado = metodoPago)">
             <mat-icon>edit</mat-icon>
           </button>
-          <button mat-icon-button (click)="deletesucursales(sucursal)">
+          <button mat-icon-button (click)="deletemetodosPago(metodoPago)">
             <mat-icon>delete</mat-icon>
           </button>
         </mat-cell>

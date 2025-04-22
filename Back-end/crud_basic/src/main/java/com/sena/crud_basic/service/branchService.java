@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sena.crud_basic.DTO.ListBranchDTO;
+import com.sena.crud_basic.DTO.requestDTO.requestBranch;
 import com.sena.crud_basic.interfaces.IBranch;
 import com.sena.crud_basic.model.branch;
 import com.sena.crud_basic.model.municipality;
@@ -37,14 +38,14 @@ public class branchService {
         }
     }
 
-    public ListBranchDTO saveBranch(ListBranchDTO BranchDTO) {
+    public ListBranchDTO saveBranch(requestBranch BranchDTO) {
         try {
             if (BranchDTO == null) {
                 throw new IllegalArgumentException("eL Empleado no puede ser null.");
             }
-            var newBranch = convertDtoToBranch(BranchDTO);
-            branchRepository.save(newBranch);
-            return convertBranchToDto(newBranch);
+            var newBranch = convertBranchToDtoCreate(BranchDTO);
+            branchRepository.save(convertDtoToBranch(newBranch));
+            return newBranch;
 
         } catch (IllegalArgumentException e) {
             throw e;
@@ -53,7 +54,7 @@ public class branchService {
         }
     }
 
-    public ListBranchDTO updateBranch(int id, ListBranchDTO BranchDTO) {
+    public ListBranchDTO updateBranch(int id, requestBranch BranchDTO) {
         try {
             if (BranchDTO == null) {
                 throw new IllegalArgumentException("eL Empleado no puede ser null.");
@@ -62,10 +63,10 @@ public class branchService {
             var optionalBranch = getBranchById(id);
             if (optionalBranch.isPresent()) {
  // Asegura mantener el ID original
-                var newBranch = convertDtoToBranch(BranchDTO);
+                var newBranch = convertBranchToDtoCreate(BranchDTO);
                 newBranch.setIdBranch(id);
-                branchRepository.save(newBranch);
-                return convertBranchToDto(newBranch);
+                branchRepository.save(convertDtoToBranch(newBranch));
+                return newBranch;
             } else {
                 throw new RuntimeException("Empleado con ID " + id + " no encontrada.");
             }
@@ -105,7 +106,18 @@ public class branchService {
         return new ListBranchDTO(
             branch.getIdBranch(),
             branch.getNameBranch(),
-            branch.getMunicipality().getIdMunicipality()
+            branch.getMunicipality().getIdMunicipality(),
+            branch.getMunicipality().getNameMunicipality()
+        );
+    }
+
+    public ListBranchDTO convertBranchToDtoCreate(requestBranch branch){
+        return new ListBranchDTO(
+            branch.getIdBranch(),
+            branch.getNameBranch(),
+            branch.getIdMunicipality(),
+            null
+
         );
     }
     public branch convertDtoToBranch(ListBranchDTO branchDTO){

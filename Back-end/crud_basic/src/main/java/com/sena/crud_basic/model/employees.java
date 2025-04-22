@@ -25,7 +25,7 @@ public class employees {
     @Column(name = "salary_employee", nullable = false, precision = 10, scale = 2)
     private BigDecimal salaryEmployee;
 
-    @Column(name = "creation_date", nullable = false)
+    @Column(name = "creation_date", nullable = false, columnDefinition = "TIMESTAMP")
     private LocalDateTime creationDate;
 
     @OneToMany(mappedBy = "idEmployee")

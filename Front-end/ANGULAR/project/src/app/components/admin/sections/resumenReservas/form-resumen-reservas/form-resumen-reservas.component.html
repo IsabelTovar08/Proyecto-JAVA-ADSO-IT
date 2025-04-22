@@ -1,0 +1,73 @@
+<h2 mat-dialog-title>{{ reserva.idReservation ? 'Editar' : 'Crear' }} Reserva</h2>
+
+<div mat-dialog-content>
+
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Cliente</mat-label>
+    <mat-select [(ngModel)]="reserva.idClient">
+      <mat-option *ngFor="let c of clientes" [value]="c.idClient">
+        {{ c.person_name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Método de Pago</mat-label>
+    <mat-select [(ngModel)]="reserva.idPaymentMethod">
+      <mat-option *ngFor="let m of metodosPago" [value]="m.idPaymentMethod">
+        {{ m.namePaymentMethod }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <h3>Detalles de la reserva</h3>
+
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Servicio</mat-label>
+    <mat-select [(ngModel)]="nuevoDetalle.idService">
+      <mat-option *ngFor="let s of servicios" [value]="s.idService">
+        {{ s.nameService }} - ${{ s.basePriceService }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Empleado</mat-label>
+    <mat-select [(ngModel)]="nuevoDetalle.idEmployee">
+      <mat-option *ngFor="let e of empleados" [value]="e.idEmployee">
+        {{ e.name_Person }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Fecha</mat-label>
+    <input matInput type="date" [(ngModel)]="nuevoDetalle.reservationDate" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Hora</mat-label>
+    <input matInput type="time" [(ngModel)]="nuevoDetalle.reservationTime" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Descuento</mat-label>
+    <input matInput type="number" [(ngModel)]="nuevoDetalle.discount" />
+  </mat-form-field>
+
+  <button mat-stroked-button color="primary" (click)="agregarDetalle()">Agregar Detalle</button>
+
+  <ul>
+    <li *ngFor="let d of reserva.detalles; let i = index">
+      Servicio: {{ d.serviceId }} - Empleado: {{ d.employeeId }} - {{ d.reservationDate }} {{ d.reservationTime }} - ${{ d.discount }}
+      <button mat-icon-button color="warn" (click)="eliminarDetalle(i)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </li>
+  </ul>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="cerrar()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="guardar()">Guardar</button>
+</div>

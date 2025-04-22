@@ -37,7 +37,7 @@ public class person {
     @JoinColumn(name = "id_municipality", nullable = false)
     private municipality municipality;
 
-    @Column(name = "creation_date", nullable = false)
+    @Column(name = "creation_date", nullable = false, columnDefinition = "TIMESTAMP")
     private LocalDateTime creationDate;
 
     @OneToMany(mappedBy = "person")

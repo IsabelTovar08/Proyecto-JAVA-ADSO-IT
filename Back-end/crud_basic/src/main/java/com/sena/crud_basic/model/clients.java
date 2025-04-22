@@ -16,7 +16,7 @@ public class clients {
     @JoinColumn(name = "id_person", nullable = false)
     private person person;
 
-    @Column(name = "registration_date_client", nullable = false)
+    @Column(name = "registration_date_client", nullable = false, columnDefinition = "TIMESTAMP")
     private LocalDateTime  registrationDateClient;
 
     public clients(int idClient, com.sena.crud_basic.model.person person,

@@ -1,44 +1,172 @@
-<p>list-person works!</p>
 <h3>Filtros</h3>
-  <div class="filtros-container">
-    <mat-form-field appearance="outline">
-      <mat-label>Nombre del cargo</mat-label>
-      <input matInput [(ngModel)]="nombrePersona" placeholder="Ej. Corte de cabello" />
-    </mat-form-field>
-    <button mat-raised-button color="primary" (click)="aplicarFiltros()">Buscar</button>
-  </div>
+<div class="filtros-container">
+  <mat-form-field appearance="outline">
+    <mat-label>Nombre del persona</mat-label>
+    <input matInput [(ngModel)]="nombrePersona"
+      placeholder="Ej. Corte de cabello" />
+  </mat-form-field>
+  <button mat-raised-button color="primary"
+    (click)="aplicarFiltros()">Buscar</button>
+</div>
 
 <mat-card>
-    <mat-card-header>
-      <mat-card-title>Personas</mat-card-title>
-      <button mat-raised-button color="primary" (click)="openForm()">Agregar Persona</button>
-    </mat-card-header>
-  
-    <mat-table [dataSource]="(filteredpersonas.length ? filteredpersonas : personas)" class="mat-elevation-z8">
-      <ng-container matColumnDef="idPosition">
-        <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
-        <mat-cell *matCellDef="let cargo">{{cargo.idPosition}}</mat-cell>
-      </ng-container>
-  
-      <ng-container matColumnDef="namePosition">
-        <mat-header-cell *matHeaderCellDef>Nombre</mat-header-cell>
-        <mat-cell *matCellDef="let cargo">{{cargo.namePosition}}</mat-cell>
-      </ng-container>
-  
-      <ng-container matColumnDef="actions">
-        <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
-        <mat-cell *matCellDef="let cargo">
-          <button mat-icon-button (click)="editCargo(personaSeleccionada = cargo)">
-            <mat-icon>edit</mat-icon>
-          </button>
-          <button mat-icon-button (click)="deleteCargo(cargo)">
-            <mat-icon>delete</mat-icon>
-          </button>
-        </mat-cell>
-      </ng-container>
-  
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table>
-  </mat-card>
-  
+  <mat-card-header>
+    <mat-card-title>Personas</mat-card-title>
+    <button mat-raised-button color="primary" (click)="openFormCreate()">Agregar
+      Persona</button>
+  </mat-card-header>
+
+  <mat-table
+    [dataSource]="(filteredpersonas.length ? filteredpersonas : personas)"
+    class="mat-elevation-z8">
+    <ng-container matColumnDef="idPerson">
+      <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+      <mat-cell *matCellDef="let persona">{{persona.idPerson}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="namesPerson">
+      <mat-header-cell *matHeaderCellDef>Nombres</mat-header-cell>
+      <mat-cell *matCellDef="let persona">{{persona.namesPerson}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="lastNamePerson">
+      <mat-header-cell *matHeaderCellDef>Apellidos</mat-header-cell>
+      <mat-cell *matCellDef="let persona">{{persona.lastNamePerson}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="documentPerson">
+      <mat-header-cell *matHeaderCellDef>Número de documento</mat-header-cell>
+      <mat-cell *matCellDef="let persona">{{persona.documentPerson}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="phonePerson">
+      <mat-header-cell *matHeaderCellDef>Teléfono</mat-header-cell>
+      <mat-cell *matCellDef="let persona">{{persona.phonePerson}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="emailPerson">
+      <mat-header-cell *matHeaderCellDef>Nombre</mat-header-cell>
+      <mat-cell *matCellDef="let persona">{{persona.Email}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="addressPerson">
+      <mat-header-cell *matHeaderCellDef>Dirección</mat-header-cell>
+      <mat-cell *matCellDef="let persona">{{persona.addressPerson}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="municipality_name">
+      <mat-header-cell *matHeaderCellDef>Municipio</mat-header-cell>
+      <mat-cell *matCellDef="let persona">{{persona.municipality_name}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+      <mat-cell *matCellDef="let persona">
+        <button mat-icon-button
+          (click)="editperson(personaSeleccionada = persona)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button (click)="deleteperson(persona)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</mat-card>
+
+
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Empleados</mat-card-title>
+    <button mat-raised-button color="primary" (click)="openFormCreateEmplyee()">Agregar
+      Empleado</button>
+  </mat-card-header>
+
+  <mat-table
+    [dataSource]="(filteredpersonas.length ? filteredpersonas : empleados)"
+    class="mat-elevation-z8">
+    <ng-container matColumnDef="idEmployee">
+      <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+      <mat-cell *matCellDef="let empleado">{{empleado.idEmployee}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="name_Person">
+      <mat-header-cell *matHeaderCellDef>Nombres</mat-header-cell>
+      <mat-cell *matCellDef="let empleado">{{empleado.name_Person}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="lastNamePerson">
+      <mat-header-cell *matHeaderCellDef>Apellidos</mat-header-cell>
+      <mat-cell *matCellDef="let empleado">{{empleado.lastNamePerson}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="name_position">
+      <mat-header-cell *matHeaderCellDef>Cargo</mat-header-cell>
+      <mat-cell *matCellDef="let empleado">{{empleado.name_position}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="salaryEmployee">
+      <mat-header-cell *matHeaderCellDef>Salario</mat-header-cell>
+      <mat-cell *matCellDef="let empleado">{{empleado.salaryEmployee}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+      <mat-cell *matCellDef="let empleado">
+        <button mat-icon-button
+          (click)="editemployee(empleadoSeleccionado = empleado)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button (click)="deleteemployee(empleado)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumnsEmployees"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumnsEmployees;"></mat-row>
+  </mat-table>
+</mat-card>
+
+
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Clientes</mat-card-title>
+    <button mat-raised-button color="primary" (click)="openFormCreateClient()">Agregar
+      Cliente</button>
+  </mat-card-header>
+
+  <mat-table
+    [dataSource]="(filteredpersonas.length ? filteredpersonas : clientes)"
+    class="mat-elevation-z8">
+    <ng-container matColumnDef="idClient">
+      <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+      <mat-cell *matCellDef="let empleado">{{empleado.idClient}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="person_name">
+      <mat-header-cell *matHeaderCellDef>Nombres</mat-header-cell>
+      <mat-cell *matCellDef="let empleado">{{empleado.person_name}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="registrationDateClient">
+      <mat-header-cell *matHeaderCellDef>Fecha Registro</mat-header-cell>
+      <mat-cell *matCellDef="let empleado">{{empleado.registrationDateClient}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+      <mat-cell *matCellDef="let empleado">
+        <button mat-icon-button (click)="deleteclient(empleado)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumnsClients"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumnsClients;"></mat-row>
+  </mat-table>
+</mat-card>

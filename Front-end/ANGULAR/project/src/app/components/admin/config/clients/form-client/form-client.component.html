@@ -1,0 +1,17 @@
+<form [formGroup]="clienteForm">
+    <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Persona</mat-label>
+        <mat-select formControlName="id_person">
+          <mat-option *ngFor="let persona of personas" [value]="persona.idPerson">
+            {{ persona.namesPerson }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+    <mat-dialog-actions align="end">
+      <button mat-button>Cancelar</button>
+      <button mat-flat-button color="primary" (click)="guardarcliente()" [disabled]="!clienteForm.valid">
+        {{ isEditMode ? 'Actualizar' : 'Guardar' }}
+      </button>
+    </mat-dialog-actions>
+  </form>

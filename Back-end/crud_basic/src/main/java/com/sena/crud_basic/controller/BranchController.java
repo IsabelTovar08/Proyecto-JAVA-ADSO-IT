@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sena.crud_basic.DTO.ListBranchDTO;
+import com.sena.crud_basic.DTO.requestDTO.requestBranch;
 import com.sena.crud_basic.service.branchService;
 
 @RestController
@@ -38,13 +39,13 @@ public class BranchController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<Object> createBranch(@RequestBody ListBranchDTO newBranch) {
+    public ResponseEntity<Object> createBranch(@RequestBody requestBranch newBranch) {
         var BranchCreate = branchServicee.saveBranch(newBranch);
         return new ResponseEntity<>(BranchCreate, HttpStatus.CREATED);
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Object> updateBranch(@PathVariable int id, @RequestBody ListBranchDTO Branch) {
+    public ResponseEntity<Object> updateBranch(@PathVariable int id, @RequestBody requestBranch Branch) {
         var updatedBranch = branchServicee.updateBranch(id, Branch);
         return new ResponseEntity<>(updatedBranch, HttpStatus.OK);
     }

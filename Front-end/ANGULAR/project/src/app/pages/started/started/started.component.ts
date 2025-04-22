@@ -42,5 +42,8 @@ export class StartedComponent {
     if(role == 'admin'){
       this.router.navigate(['/dashboard'])
     }
+    else{
+      this.router.navigate(['/dashboard/resumen']);
+    }
   }
 }

@@ -16,11 +16,10 @@ import com.sena.crud_basic.model.person;
 
 @Service
 public class personService {
- @Autowired
- private IPerson personRepository;
+    @Autowired
+    private IPerson personRepository;
 
-
-     public List<requestPerson> getAllPerson() {
+    public List<requestPerson> getAllPerson() {
         try {
             var branchList = personRepository.findAll();
             return branchList.stream()
@@ -31,7 +30,6 @@ public class personService {
         }
     }
 
-
     public Optional<requestPerson> getPersonById(int id) {
         try {
             return personRepository.findById(id)
@@ -40,8 +38,6 @@ public class personService {
             throw new RuntimeException("Error al obtener la persona por ID: " + e.getMessage(), e);
         }
     }
-
-
 
     public ListPersonDTO savePerson(ListPersonDTO perosnDTO) {
         try {
@@ -59,8 +55,6 @@ public class personService {
         }
     }
 
-
-    
     public ListPersonDTO updatePerson(int id, ListPersonDTO perosnDTo) {
         try {
             if (perosnDTo == null) {
@@ -69,7 +63,7 @@ public class personService {
 
             var optionalPerson = getPersonById(id);
             if (optionalPerson.isPresent()) {
- // Asegura mantener el ID original
+                // Asegura mantener el ID original
                 var newBranch = convertDtoPerson(perosnDTo);
                 newBranch.setIdPerson(id);
                 personRepository.save(newBranch);
@@ -97,57 +91,52 @@ public class personService {
         }
     }
 
+    public ListPersonDTO convertPersonchDto(person person) {
+        return new ListPersonDTO(
+                person.getIdPerson(),
+                person.getNamesPerson(),
+                person.getLastNamePerson(),
+                person.getDocumentPerson(),
+                person.getPhonePerson(),
+                person.getEmailPerson(),
+                person.getAddressPerson(),
+                person.getMunicipality().getIdMunicipality(),
+                person.getCreationDate());
+    }
 
-  
-public ListPersonDTO convertPersonchDto(person person){
-    return new ListPersonDTO(
-        person.getIdPerson(),
-        person.getNamesPerson(),
-        person.getLastNamePerson(),
-        person.getDocumentPerson(),
-        person.getPhonePerson(),
-        person.getEmailPerson(),
-        person.getAddressPerson(),
-        person.getMunicipality().getIdMunicipality(),
-        person.getCreationDate()
-    );
-}
+    public person convertDtoPerson(ListPersonDTO listPersponDTO) {
+        municipality municipio = new municipality(0, null, null, null);
+        municipio.setIdMunicipality(listPersponDTO.getIdMunicipality());
 
-public person convertDtoPerson(ListPersonDTO listPersponDTO){
-    municipality municipio = new municipality(0, null, null, null);
-    municipio.setIdMunicipality(listPersponDTO.getIdMunicipality());
+        return new person(
+                0,
+                listPersponDTO.getNamesPerson(),
+                listPersponDTO.getLastNamePerson(),
+                listPersponDTO.getDocumentPerson(),
+                listPersponDTO.getPhonePerson(),
+                listPersponDTO.getEmailPerson(),
+                listPersponDTO.getAddressPerson(),
+                municipio,
+                LocalDateTime.now(),
+                null,
+                null
 
-    return new person(
-        0, 
-        listPersponDTO.getNamesPerson(),
-        listPersponDTO.getLastNamePerson(),
-        listPersponDTO.getDocumentPerson(),
-        listPersponDTO.getPhonePerson(),
-        listPersponDTO.getEmailPerson(),
-        listPersponDTO.getAddressPerson(),
-        municipio,
-        LocalDateTime.now(),
-        null,
-        null
+        );
 
-    );
+    }
 
-
-}
-
-public requestPerson convertPersonchDtoList(person person){
-    return new requestPerson(
-        person.getIdPerson(),
-        person.getNamesPerson(),
-        person.getLastNamePerson(),
-        person.getDocumentPerson(),
-        person.getPhonePerson(),
-        person.getEmailPerson(),
-        person.getAddressPerson(),
-        person.getMunicipality().getIdMunicipality(),
-        person.getMunicipality().getNameMunicipality(),
-        person.getCreationDate()
-    );
-}
+    public requestPerson convertPersonchDtoList(person person) {
+        return new requestPerson(
+                person.getIdPerson(),
+                person.getNamesPerson(),
+                person.getLastNamePerson(),
+                person.getDocumentPerson(),
+                person.getPhonePerson(),
+                person.getEmailPerson(),
+                person.getAddressPerson(),
+                person.getMunicipality().getIdMunicipality(),
+                person.getMunicipality().getNameMunicipality(),
+                person.getCreationDate());
+    }
 
 }

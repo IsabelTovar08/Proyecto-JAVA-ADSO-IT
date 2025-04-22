@@ -1,0 +1,50 @@
+<form [formGroup]="personaForm">
+    <mat-dialog-content>
+      <div class="inline-fields">
+        <mat-form-field appearance="fill" class="half-width">
+          <mat-label>Nombres de la persona</mat-label>
+          <input matInput formControlName="namesPerson" />
+        </mat-form-field>
+      </div>
+      <mat-form-field appearance="fill" class="half-width">
+        <mat-label>Apellidos</mat-label>
+        <input matInput formControlName="lastNamePerson" />
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="half-width">
+        <mat-label>N. Identificación</mat-label>
+        <input matInput formControlName="documentPerson" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="half-width">
+        <mat-label>Teléfono</mat-label>
+        <input matInput formControlName="phonePerson" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="half-width">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="emailPerson" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="half-width">
+        <mat-label>Dirección</mat-label>
+        <input matInput formControlName="addressPerson" />
+      </mat-form-field>
+    </mat-dialog-content>
+
+    <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Municipio</mat-label>
+        <mat-select formControlName="idMunicipality">
+          <mat-option *ngFor="let municipio of municipios" [value]="municipio.idMunicipality">
+            {{ municipio.nameMunicipality }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+    <mat-dialog-actions align="end">
+      <button mat-button>Cancelar</button>
+      <button mat-flat-button color="primary" (click)="guardarpersona()" [disabled]="!personaForm.valid">
+        {{ isEditMode ? 'Actualizar' : 'Guardar' }}
+      </button>
+    </mat-dialog-actions>
+  </form>
